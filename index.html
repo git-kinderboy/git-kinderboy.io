@@ -9,6 +9,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <style>
+     table, td { border:1px solid black; border-collapse: collapse;} 
+      </style>
+    <script>
+      var cells = document.querySelectorAll("#myTable td");
+var search = document.getElementById("myInput");
+
+search.addEventListener("keyup", function(){
+
+  for(var i = 0; i < cells.length; ++i){
+    // This line checks for an exact match in a cell against what the
+    // user entered in the search box
+    //if(cells[i].textContent.toLowerCase() === search.value.toLowerCase()){
+    
+    // This checks for cells that start with what the user has entered
+    if(cells[i].textContent.toLowerCase().indexOf(search.value.toLowerCase()) === 0){      
+        cells.forEach(function(element){
+            element.style.display = "none";
+        });
+        cells[i].style.background = "yellow";
+        cells[i].style.display = "table-cell";
+        break;
+    } else {
+        cells[i].style.background = "white";
+        cells.forEach(function(element){
+          if(cells[i] !== element){
+            element.style.display = "table-cell";
+          }
+        }); 
+    }    
+  }
+
+});
+      </script>
   </head>
   <body>
     <!-- Image and text -->
@@ -20,7 +54,24 @@
     </a>
   </div>
 </nav>
+<div class="container">
+  <input id='myInput'>
 
+<table id='myTable'>
+   <tr>
+      <td>AB</td>
+      <td>BC</td>
+   </tr>
+   <tr>
+      <td>CD</td>
+      <td>DE</td>
+   </tr>
+   <tr>
+      <td>EF</td>
+      <td>GH</td>
+   </tr>
+</table>
+ </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
